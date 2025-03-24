@@ -3,45 +3,48 @@ import pandas as pd
 
 # creating
 df = pd.DataFrame([[89.2, 92.5, 'B'], 
-                   [90.8,92.8, 'A'], 
+                   [90.8, 92.8, 'A'], 
                    [89.9, 95.2, 'A'],
                    [89.9, 85.2, 'C'],
                    [89.9, 90.2, 'B']], 
     columns = ['중간고사', '기말고사', '성적'], 
     index = ['1반', '2반', '3반', '4반', '5반'])
-df['1반']['중간고사']
+df['1반']['중간고사']    # KeyError: '1반'
 type(df)
 
 # indexing-selection-assigning
 df['중간고사']
-type(df['중간고사'])
+type(df['중간고사'])    # pandas.core.series.Series
 df['중간고사'][0:2]
-type(df['중간고사'][0])
-type(df['중간고사'][0:2])
+type(df['중간고사'][0]) # numpy.float64
+type(df['중간고사'][0:2])   # pandas.core.series.Series
 df['중간고사']['1반':'2반']
-type(df['중간고사']['1반':'2반'])
+type(df['중간고사']['1반':'2반']) # pandas.core.series.Series
 
 # loc
 df.loc['1반']
-type(df.loc['1반'])
+type(df.loc['1반'])  # pandas.core.series.Series
 df.loc[:, '중간고사']
-type(df.loc[:, '중간고사'])
+type(df.loc[:, '중간고사']) # pandas.core.series.Series
+type(df.loc[:, ['중간고사']])   # pandas.core.frame.DataFrame
 df.loc['1반':'2반']['중간고사']
 df.loc['1반', '중간고사']
-type(df.loc['1반', '중간고사'])
+type(df.loc['1반', '중간고사'])  # numpy.float64
 df.loc['1반'][0]
 
 df.iloc[0]
-type(df.iloc[0])
+type(df.iloc[0])    # pandas.core.series.Series
 df.iloc[0]['중간고사']
-type(df.iloc[0]['중간고사'])
+type(df.iloc[0]['중간고사'])    # numpy.float64
 
 df.loc[df.성적 == 'B']
+df.성적 == 'B'
+df.loc[[True, False, False, False, True]]
 df.loc[(df.성적 == 'A') & (df.중간고사 >= 90)]
 df.loc[df.성적.isin(['B', 'C'])]
 
 ## summary function and maps
-df.describe()
+df.describe()   # 기술통계
 df.중간고사.describe()
 df.head(1)
 df.중간고사.unique()
@@ -69,7 +72,7 @@ df.rename(columns={'성적': '등급'})
 df.rename_axis("반이름", axis='rows')
 
 df1 = pd.DataFrame([[89.2, 92.5, 'B'], 
-                   [90.8,92.8, 'A'], 
+                   [90.8, 92.8, 'A'], 
                    [89.9, 95.2, 'A'],
                    [89.9, 85.2, 'C'],
                    [89.9, 90.2, 'B']], 
@@ -77,4 +80,8 @@ df1 = pd.DataFrame([[89.2, 92.5, 'B'],
     index = ['1반', '2반', '3반', '4반', '5반'])
 
 df0=pd.concat([df, df1])
+
+df.to_csv('scores.csv') # encoding='cp949'
+
+mydf = pd.read_csv('scores.csv', encoding='utf-8', index_col=0, engine='python')
 
