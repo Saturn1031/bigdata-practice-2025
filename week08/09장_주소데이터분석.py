@@ -96,7 +96,7 @@ map_CB.save('./DATA/map_CB.html')
 
 # In[15]:
 import webbrowser
-webbrowser.open('C:/BigData/DATA/map_CB.html')
+webbrowser.open('C:/DuksungProgramming/4_1_Bigdata/week08/DATA/map_CB.html')
 chrome_path = 'C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s'
-webbrowser.get(chrome_path).open('C:/BigData/DATA/map_CB.html')
+webbrowser.get(chrome_path).open('C:/DuksungProgramming/4_1_Bigdata/week08/DATA/map_CB.html')
 
