@@ -63,7 +63,7 @@ plt.tight_layout()
 plt.show()
 
 # graphviz 설티 : https://graphviz.org/download/
-#os.environ['PATH'] += os.pathsep + 'C:\Program Files\Graphviz/bin/'
+# os.environ['PATH'] += os.pathsep + 'C:\Program Files (x86)\Graphviz/bin/'
 dt_dot_data = tree.export_graphviz(dt_clf, out_file = None,
                                   feature_names = feature_names,
                                   class_names = target_name,

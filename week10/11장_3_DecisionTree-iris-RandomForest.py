@@ -29,7 +29,7 @@ rfc.fit(x_train, y_train)
 prediction = rfc.predict(x_test)
 #예측 결과 precision과 실제 test data의 target 을 비교 
 print (prediction==y_test)
-#Random forest 정확도 츶정
+#Random forest 정확도 측정
 rfc.score(x_test, y_test)
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import classification_report
@@ -43,16 +43,19 @@ y = iris.target
 X_train, X_test, Y_train, Y_test = train_test_split(x, y, test_size=0.2)
 print (y_test)
 print (Y_test)
-clf = RandomForestClassifier(n_estimators=10) # Random Forest
+clf = RandomForestClassifier(n_estimators=50) # Random Forest
 clf.fit(X_train, Y_train)
 prediction_1 = rfc.predict(X_test)
+myX_test=np.array([[5.6,2.9,3.6,1.3]])
+myprediction = rfc.predict(myX_test)
+print(myprediction)
 #print (prediction_1 == Y_test)
 print ("Accuracy is : ",accuracy_score(Y_test, prediction_1))
 print ("=======================================================")
 print (classification_report(prediction_1, Y_test))
 
 # Initialize the model
-clf_2 = RandomForestClassifier(n_estimators=200, # Number of trees
+clf_2 = RandomForestClassifier(n_estimators=100, # Number of trees
                                max_features=4,    # Num features considered
                                   oob_score=True)    # Use OOB scoring*
 clf_2.fit(X_train, Y_train)
@@ -65,8 +68,11 @@ print (classification_report(prediction_2, Y_test))
 for feature, imp in zip(iris.feature_names, clf_2.feature_importances_):
     print(feature, imp)
     
-import graphviz
+    
 import os
+os.environ['PATH'] += os.pathsep + 'C:\Program Files (x86)\Graphviz/bin/'
+
+#import graphviz
 #os.environ['PATH'] += os.pathsep + 'c:\programdata\anaconda3\lib\site-packages'
 estimator = clf_2.estimators_[5]
 from sklearn.tree import export_graphviz
