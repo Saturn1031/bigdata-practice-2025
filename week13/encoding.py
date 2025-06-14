@@ -19,21 +19,21 @@ df = pd.DataFrame([
 ], columns=['hours', 'attendance', 'sex', 'cate', 'score'])
 df.info()
 
-ohe = OneHotEncoder(sparse=False)
+ohe = OneHotEncoder(sparse_output=False) # sparse=True
 ohe.fit(df[['sex']]) # Series encoding
 encoding1=ohe.transform(df[['sex']]) # array of float64
 print(ohe.transform(df[['sex']]))
 
 array1=np.array(df[['sex']]) 
-ohe = OneHotEncoder(sparse=False)
+ohe = OneHotEncoder(sparse_output=False)
 ohe.fit(array1) # array encoding
 encoding1=ohe.transform(df[['sex']]) # array of float64
 print(ohe.transform(df[['sex']]))
 
-ohe = OneHotEncoder(sparse=False)
+ohe = OneHotEncoder(sparse_output=False)
 ohe.fit(df) # dataframe encoding
 encoding1=ohe.transform(df) # array of float64; dir(ohe); ohe.categories_; help(ohe.fit)
-print(ohe.transform(df[['sex']]))
+print(ohe.transform(df)); #print(ohe.transform(df[['sex']]))
 
 ohe.fit(df[['cate']])
 cateencodeing=ohe.transform(df[['cate']])
@@ -50,7 +50,7 @@ df = pd.DataFrame([
 ], columns=['hours', 'attendance', 'cate', 'score'])
 
 from sklearn.preprocessing import OneHotEncoder
-ohe = OneHotEncoder(sparse=False)
+ohe = OneHotEncoder(sparse_output=False)
 ohe.fit(df[['cate']])
 print(ohe.transform(df[['cate']]))
 

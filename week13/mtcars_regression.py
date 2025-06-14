@@ -18,7 +18,7 @@ print(data['cyl'].unique())
 
 print(data.info())
 
-print(data.corr())
+#print(data.corr())
 X=data.drop(columns='mpg')
 Y=data['mpg']
 
@@ -76,11 +76,11 @@ X.loc[30,'carb']=5.235
 #print(X.loc[outlier(X,'carb'), 'carb'])
 
 # 데이터 스케일링
-import sklearn
+import sklearn; 
 dir(sklearn)
 print(sklearn.__doc__)
 sklearn.__all__
-dir(sklearn.preprocessing)
+import sklearn.preprocessing; dir(sklearn.preprocessing)
 
 from sklearn.preprocessing import StandardScaler
 scaler=StandardScaler()
