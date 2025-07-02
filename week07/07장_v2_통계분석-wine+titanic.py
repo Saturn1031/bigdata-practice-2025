@@ -67,15 +67,24 @@ red_wine_quality = wine.loc[wine['type'] == 'red', 'quality']
 white_wine_quality = wine.loc[wine['type'] == 'white', 'quality']
 stats.ttest_ind(red_wine_quality, white_wine_quality, equal_var = False)
 
+# 회귀식 정의 (종속변수 ~ 독립변수)
 Rformula = 'quality ~ fixed_acidity + volatile_acidity + citric_acid + residual_sugar + chlorides + free_sulfur_dioxide + total_sulfur_dioxide + density + pH + sulphates + alcohol'
 
+# ols: 선형회귀 모델, 모델 학습 (회귀계수 추정)
 regression_result = ols(Rformula, data = wine).fit()
 
+# 회귀 결과
 regression_result.summary()
 
 # 6.3 회귀 분석 모델로 새로운 샘플의 품질 등급 예측하기
+
+# 모든 열에서 'quality', 'type' 열을 제외
 sample1 = wine[wine.columns.difference(['quality', 'type'])]
+
+# 0~5행
 sample1 = sample1[0:5][:]
+
+# 예측
 sample1_predict = regression_result.predict(sample1)
 sample1_predict
 wine[0:5]['quality']
